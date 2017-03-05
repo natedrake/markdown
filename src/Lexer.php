@@ -1,20 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: John
- * Date: 05/03/2017
- * Time: 11:52
+ * @author John
+ * @date 05/03/2017
  */
 
 namespace Markdown;
 
-
+/**
+ * Class Lexer
+ * @package Markdown
+ */
 class Lexer
 {
     /**
      * @var string $input
      */
-    private $input;
+    public $input;
 
     /**
      * Lexer constructor.
@@ -22,7 +23,7 @@ class Lexer
      */
     public function __construct($input)
     {
-        $this->input=$input;
+        $this->input=preg_replace(['/\r\n|\r/', '/\t/'], ["\n", ' '], $input);
     }
 
     /**
@@ -30,9 +31,12 @@ class Lexer
      */
     public function consumeInput($length)
     {
-        $this->input=substr($this->input, $length, (strlen($this->input)-$length));
+        $this->input=mb_substr($this->input, $length);
     }
 
+    /**
+     * @return Token
+     */
     public function parse()
     {
         $matches=null;
@@ -40,15 +44,16 @@ class Lexer
         if (strlen($this->input)<=0) {
             return new Token('eos', '');
         }
-        else if (preg_match('/^\n/', $this->input, $matches)) {
+        elseif (preg_match('/^\n/', $this->input, $matches)) {
             $this->consumeInput(strlen($matches[0]));
-            return new Token('newline', '<br />');
+            return new Token('newline', ['<br />']);
         }
         elseif (preg_match('/^[_]{2}([^_;]+)[_]{2}/', $this->input, $matches)) {
             $this->consumeInput(strlen($matches[0]));
             return new Token('em', $matches);
         }
-        elseif (preg_match('/^[#]+([^\n;]+)/', $this->input, $matches)) {
+        elseif (preg_match('/(^[#]+)([^\n;]+)/', $this->input, $matches)) {
+            $matches[0]=preg_replace('/\s$/', '', $matches[0]);
             $this->consumeInput(strlen($matches[0]));
             return new Token('heading', $matches);
         }
@@ -72,7 +77,7 @@ class Lexer
             $this->consumeInput(strlen($matches[0]));
             return new Token('img', $matches);
         }
-        elseif (preg_match('/[^\*#_\[\n`;]+/)', $this->input, $matches)) {
+        elseif (preg_match('/^[^\*#_\[\n`;]+/', $this->input, $matches)) {
             $this->consumeInput(strlen($matches[0]));
             return new Token('text', $matches);
         }
