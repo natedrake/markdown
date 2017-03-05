@@ -1,4 +1,4 @@
-# markdown
+# PHP Markdown
 ### PHP Markdown Converter 
 
 Markdown is a PHP library for converting markdown to mark up.  It is a useful tool 
