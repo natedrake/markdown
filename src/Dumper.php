@@ -1,23 +1,29 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: John
- * Date: 05/03/2017
- * Time: 11:37
+ * @author natedrake
+ * @date 05/03/2017
  */
 
 namespace Markdown;
 
-
+/**
+ * Class Dumper
+ * @package Markdown
+ */
 class Dumper
 {
+    /**
+     * @var Token $previousElement
+     */
     private $previousElement;
     /**
      * @var array $elements
      */
     private $elements;
-
-    private $dump;
+    /**
+     * @var string $dump
+     */
+    private $dump='';
 
 
     /**
@@ -40,9 +46,9 @@ class Dumper
                 case 'newline':
                     if (($this->elements[$key-1] !== null)) {
                         if ($this->elements[$key-1]->type !== 'heading') {
-                            $return = $this->elements[$key]->value;
+                            $return = $this->elements[$key]->value[0];
                         } else if (($this->elements[$key-1]->type === 'code' && $this->elements[$key-2]->type !== 'newline')) {
-                            $return = $this->elements[$key]->value;
+                            $return = $this->elements[$key]->value[0];
                         }
                     } else {
                         return '';
