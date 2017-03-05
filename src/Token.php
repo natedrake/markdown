@@ -1,14 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: John
- * Date: 05/03/2017
- * Time: 11:50
+ * @author natedrake
+ * @date 05/03/2017
  */
 
 namespace Markdown;
 
-
+/**
+ * Class Token
+ * @package Markdown
+ */
 class Token
 {
     /**
@@ -29,7 +30,21 @@ class Token
     {
         $this->type=$type;
         $this->value=$value;
+    }
 
-        return ['type'=>$this->type, 'value'=>$this->value];
+    /**
+     * @return string
+     */
+    public function type()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return string
+     */
+    public function value()
+    {
+        return $this->value;
     }
 }
