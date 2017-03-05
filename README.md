@@ -1,7 +1,7 @@
-# markdown
+# PHP Markdown
 ### PHP Markdown Converter 
 
-Markdown is a PHP library for converting markdown to mark up.  It is a useful tool 
+Markdown is a PHP library for converting markdown to markup.  It is a useful tool 
 for creating documentation on a web page.  For example, if your website contains
 a blog, wiki pages, any sort of editing from users you could allow them to
 style their documents using markdown.
@@ -52,8 +52,6 @@ Create links by inserting the link text in square brackets followed by the hyper
 [Google](https://google.ie)
 
 ``[Google](https://google.ie)`` will product the following markup ``<a href="https://gooogle.ie" target="_blank">Google</a>``
-
-
 
 ### Images
 
