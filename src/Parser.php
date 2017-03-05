@@ -1,14 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: John
- * Date: 05/03/2017
- * Time: 11:33
+ * @author natedrake
+ * @date 05/03/2017
  */
 
 namespace Markdown;
 
-
+/**
+ * Class Parser
+ * @package Markdown
+ */
 class Parser
 {
     /**
@@ -19,7 +20,9 @@ class Parser
      * @var array $blockElements
      */
     private $blockElements=['heading'];
-
+    /**
+     * @var Lexer $lexer
+     */
     private $lexer;
 
     /**
@@ -29,6 +32,7 @@ class Parser
     public function __construct($input)
     {
         $this->input=$input;
+        $this->lexer=new Lexer($this->input);
     }
 
     /**
@@ -37,6 +41,9 @@ class Parser
     public function parse()
     {
         $this->lexer->input=$this->input;
+        /**
+         * @var Token $t
+         */
         $t=$this->lexer->parse();
         $elements=[];
         while($t->type() !== 'eos') {
