@@ -53,8 +53,6 @@ Create links by inserting the link text in square brackets followed by the hyper
 
 ``[Google](https://google.ie)`` will product the following markup ``<a href="https://gooogle.ie" target="_blank">Google</a>``
 
-
-
 ### Images
 
 ``![Alt Text](link to image)``
