@@ -49,12 +49,18 @@ Wrap text in ``**`` to make it bold
 
 Create links by inserting the link text in square brackets followed by the hyperlink in normal brackets
 
+[Google](https://google.ie)
+
 ``[Google](https://google.ie)`` will product the following markup ``<a href="https://gooogle.ie" target="_blank">Google</a>``
+
+
 
 ### Images
 
 ``![Alt Text](link to image)``
 
 Create images by inserting the alternate text in square brackets followed by the link to the image in normal brackets
+
+![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)
 
 ``![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png)`` will produce the following markup ``<img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Git Logo" />`` 
