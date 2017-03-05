@@ -70,7 +70,7 @@ class Lexer
             return new Token('hr', $matches);
         }
         elseif(preg_match('/^\[([^\];]+)]\(([^\);]+)\)/', $this->input, $matches)) {
-            $this->consumeInput($matches[0]);
+            $this->consumeInput(strlen($matches[0]));
             return new Token('a', $matches);
         }
         else if(preg_match('/^!\[([^\];]+)]\(([^;]+)\)/', $this->input, $matches)) {
