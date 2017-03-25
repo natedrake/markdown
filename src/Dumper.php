@@ -15,7 +15,7 @@ class Dumper
     /**
      * @var Token $previousElement
      */
-    private $previousElement;
+    private $previousElement=null;
     /**
      * @var array $elements
      */
@@ -25,6 +25,9 @@ class Dumper
      */
     private $dump='';
 
+    private $blockElements=array(
+        'heading',
+    );
 
     /**
      * Dumper constructor.
@@ -40,22 +43,23 @@ class Dumper
      */
     public function parse()
     {
-        $return=null;
-
-        echo "\n==== Printing Elements ====\n";
-        print_r($this->elements);
-
+        /**
+         * @var Token $element
+         */
         foreach($this->elements as $key=>$element) {
-
-
-
+            $return=null;
             switch($element->type) {
+                case 'newline':
+                    if ($this->previousElement !== null) {
+                        if ($this->previousElement->type() !== 'newline' && (in_array($this->previousElement->type(), $this->blockElements)) !== true) {
+                            $return.='<br />';
+                        }
+                    }
+                    $return.='';
+                    break;
                 case 'heading':
-                    echo "\n==== Header ====\n";
-                    print_r($element);
                     $headingSize = strlen($this->elements[$key]->value[1]);
-                    $return = '<h'.$headingSize.'></h'.$headingSize.'>';
-                    echo "\n|===={$return}===|\n";
+                    $return = '<h'.$headingSize.'>'.$element->value[2].'</h'.$headingSize.'>';
                     break;
                 case 'strong':
                     $return = '<strong>'.$this->elements[$key]->value[1].'</strong>';
@@ -65,7 +69,7 @@ class Dumper
                     break;
                 case 'code':
                     $code = '<code>'.$this->elements[$key]->value[1].'</code>';
-                    if (($this->elements[$key-1] !== null) && ($this->elements[$key+1] !== null)) {
+                    if (($this->elements[$key-1] !== null) && isset($this->elements[$key+1])) {
                         if ($this->elements[$key-1]->type==='newline' && $this->elements[$key+1]->type==='newline') {
                             $return = '<pre>'.$code.'</pre>';
                         }
@@ -86,7 +90,6 @@ class Dumper
                     $return = 'eos';
                     break;
                 case 'text':
-                    #var_dump($this->elements[$key]);
                     $return = '<p>'.$this->elements[$key]->value[0].'</p>';
                     break;
                 default:
