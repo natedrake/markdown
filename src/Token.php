@@ -17,7 +17,7 @@ class Token
      */
     public $type;
     /**
-     * @var string
+     * @var mixed
      */
     public $value;
 

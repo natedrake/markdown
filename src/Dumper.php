@@ -41,22 +41,21 @@ class Dumper
     public function parse()
     {
         $return=null;
+
+        echo "\n==== Printing Elements ====\n";
+        print_r($this->elements);
+
         foreach($this->elements as $key=>$element) {
+
+
+
             switch($element->type) {
-                case 'newline':
-                    if (($this->elements[$key-1] !== null)) {
-                        if ($this->elements[$key-1]->type !== 'heading') {
-                            $return = $this->elements[$key]->value[0];
-                        } else if (($this->elements[$key-1]->type === 'code' && $this->elements[$key-2]->type !== 'newline')) {
-                            $return = $this->elements[$key]->value[0];
-                        }
-                    } else {
-                        return '';
-                    }
-                    break;
                 case 'heading':
+                    echo "\n==== Header ====\n";
+                    print_r($element);
                     $headingSize = strlen($this->elements[$key]->value[1]);
-                    $return = '<h'.$headingSize.'>'.$this->elements[$key]->value[2].'</h'.$headingSize.'>';
+                    $return = '<h'.$headingSize.'></h'.$headingSize.'>';
+                    echo "\n|===={$return}===|\n";
                     break;
                 case 'strong':
                     $return = '<strong>'.$this->elements[$key]->value[1].'</strong>';
@@ -87,7 +86,8 @@ class Dumper
                     $return = 'eos';
                     break;
                 case 'text':
-                    $return = $this->elements[$key]->value[0];
+                    #var_dump($this->elements[$key]);
+                    $return = '<p>'.$this->elements[$key]->value[0].'</p>';
                     break;
                 default:
                     break;

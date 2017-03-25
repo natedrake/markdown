@@ -45,10 +45,21 @@ class Parser
          * @var Token $t
          */
         $t=$this->lexer->parse();
+
+//        echo "\n==== Token Type ====\n";
+//        var_dump($t->type());
+
         $elements=[];
         while($t->type() !== 'eos') {
-            $elements[]=$t;
+            if ($t->type() !== 'newline') {
+//                echo "==== Token Dump ====\n";
+//                print_r($t->value());
+                $elements[]=$t;
+
+            }
             $t=$this->lexer->parse();
+//            echo "\n==== Next Token Type ====\n";
+//            var_dump($t->type());
         }
         return $elements;
     }
