@@ -14,5 +14,13 @@
     "psr-4": {
       "Markdown\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Markdown\\Test\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8|^5.2"
   }
 }
