@@ -6,14 +6,9 @@
 namespace Markdown\Test;
 
 use Markdown\BootStrap;
-use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class TestMarkdown
- * @author natedrake
- * @date 11/03/2017
- */
-class TestMarkdown extends TestCase
+class MarkdownTest extends PHPUnit_Framework_TestCase
 {
     /**
      * TestMarkdown constructor.
