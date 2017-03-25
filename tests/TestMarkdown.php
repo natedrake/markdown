@@ -24,7 +24,7 @@ class TestMarkdown extends TestCase
      * @method setUp
      * @return void
      */
-    protected function setUp() : void
+    protected function setUp()
     {
         parent::setUp();
     }
@@ -33,7 +33,7 @@ class TestMarkdown extends TestCase
      * @method tearDown
      * @return void
      */
-    protected function tearDown() : void
+    protected function tearDown()
     {
         parent::tearDown();
     }
@@ -42,7 +42,7 @@ class TestMarkdown extends TestCase
      * @method testHeader
      * @return void
      */
-    public function testHeader() : void
+    public function testHeader()
     {
         $markup="<h2>Heading Two</h2>";
         $markdown="##Heading Two";
@@ -56,7 +56,7 @@ class TestMarkdown extends TestCase
      * @method testBold
      * @return void
      */
-    public function testBold() : void
+    public function testBold()
     {
         $markup="<strong>Strong</strong>";
         $markdown="**Strong**";
@@ -70,7 +70,7 @@ class TestMarkdown extends TestCase
      * @method testEmphasize
      * @return void
      */
-    public function testEmphasize() : void
+    public function testEmphasize()
     {
         $markup="<i>Emphasize</i>";
         $markdown="__Emphasize__";
@@ -84,7 +84,7 @@ class TestMarkdown extends TestCase
      * @method testImg
      * @return void
      */
-    public function testImg() : void
+    public function testImg()
     {
         $markup='<img alt="test" src="http://ecneireland.com/test.jpg" style="width:100%;" />';
         $markdown="![test](http://ecneireland.com/test.jpg)";
@@ -98,7 +98,7 @@ class TestMarkdown extends TestCase
      * @method testLink
      * @return void
      */
-    public function testLink() : void
+    public function testLink()
     {
         $markup='<a target="_blank" href="https://google.ie">Google</a>';
         $markdown="[Google](https://google.ie)";

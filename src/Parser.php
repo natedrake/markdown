@@ -40,16 +40,19 @@ class Parser
      */
     public function parse()
     {
-        $this->lexer->input=$this->input;
         /**
          * @var Token $t
          */
         $t=$this->lexer->parse();
+
         $elements=[];
+
         while($t->type() !== 'eos') {
+
             $elements[]=$t;
             $t=$this->lexer->parse();
         }
         return $elements;
     }
 }
+
