@@ -107,13 +107,4 @@ class TestMarkdown extends TestCase
 
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
-
-    public function testMarkdown()
-    {
-        $markdown=file_get_contents('test.md');
-
-        $bootstrap=new BootStrap($markdown);
-
-        echo $bootstrap->dumper->parse();
-    }
 }
