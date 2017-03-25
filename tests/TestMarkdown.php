@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author natedrake
+ * @date 25/03/2017
+ */
 namespace Markdown\Test;
 
 use Markdown\BootStrap;
@@ -46,9 +49,7 @@ class TestMarkdown extends TestCase
     {
         $markup="<h2>Heading Two</h2>";
         $markdown="##Heading Two";
-
         $bootstrap= new BootStrap($markdown);
-
         $this->assertEquals($markup,$bootstrap->dumper->parse());
     }
 
@@ -60,9 +61,7 @@ class TestMarkdown extends TestCase
     {
         $markup="<strong>Strong</strong>";
         $markdown="**Strong**";
-
         $bootstrap=new BootStrap($markdown);
-
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
@@ -74,9 +73,7 @@ class TestMarkdown extends TestCase
     {
         $markup="<i>Emphasize</i>";
         $markdown="__Emphasize__";
-
         $bootstrap=new BootStrap($markdown);
-
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
@@ -88,9 +85,7 @@ class TestMarkdown extends TestCase
     {
         $markup='<img alt="test" src="http://ecneireland.com/test.jpg" style="width:100%;" />';
         $markdown="![test](http://ecneireland.com/test.jpg)";
-
         $bootstrap=new BootStrap($markdown);
-
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
@@ -102,9 +97,7 @@ class TestMarkdown extends TestCase
     {
         $markup='<a target="_blank" href="https://google.ie">Google</a>';
         $markdown="[Google](https://google.ie)";
-
         $bootstrap=new BootStrap($markdown);
-
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 }
