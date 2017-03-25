@@ -27,6 +27,7 @@ class Dumper
 
     private $blockElements=array(
         'heading',
+        'text'
     );
 
     /**

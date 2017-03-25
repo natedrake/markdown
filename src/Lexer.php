@@ -1,6 +1,6 @@
 <?php
 /**
- * @author John
+ * @author natedrake
  * @date 05/03/2017
  */
 
@@ -35,62 +35,142 @@ class Lexer
     }
 
     /**
+     * @return mixed
+     */
+    protected function getNextToken()
+    {
+        $scanners=array(
+            'scanEOS',
+            'scanNewline',
+            'scanEm',
+            'scanHeading',
+            'scanStrong',
+            'scanCode',
+            'scanHR',
+            'scanLink',
+            'scanImg',
+            'scanText'
+        );
+
+        foreach ($scanners as $scanner) {
+            $token=$this->$scanner();
+
+            if ($token !== null && $token) {
+                return $token;
+            }
+        }
+    }
+
+    /**
+     * @param $regex
+     * @param $type
      * @return Token
-     * @throws \Exception
+     */
+    protected function scanInput($regex, $type)
+    {
+        $matches=array();
+        if (preg_match($regex, $this->input, $matches)) {
+            $this->consumeInput(mb_strlen($matches[0]));
+            if ($type==='heading') {
+
+            }
+            return new Token($type, $matches);
+        }
+    }
+
+    /**
+     * @return Token
+     */
+    public function scanEOS()
+    {
+        if (mb_strlen($this->input)<=0) {
+            return new Token('eos', '');
+        }
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanNewline()
+    {
+        return $this->scanInput('/^\n/', 'newline');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanReturn()
+    {
+        return $this->scanInput('/^\r/', 'newline');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanEm()
+    {
+        return $this->scanInput('/^[_]{2}([^_;]+)[_]{2}/', 'em');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanHeading()
+    {
+        return $this->scanInput('/(^[#]+)([^\n;]+)/', 'heading');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanStrong()
+    {
+        return $this->scanInput('/^\*{2}([^\*;]+)[\*]{2}/', 'strong');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanCode()
+    {
+        return $this->scanInput('/^[`]{3}([^`;]+)[`]{3}/', 'code');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanHR()
+    {
+        return $this->scanInput('/^\n[-]{3}\n/', 'hr');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanLink()
+    {
+        return $this->scaninput('/^\[([^\];]+)]\(([^\);]+)\)/', 'a');
+    }
+
+    protected function scanImg()
+    {
+        return $this->scanInput('/^!\[([^\];]+)]\(([^;]+)\)/', 'img');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanText()
+    {
+        return $this->scanInput('/^[^\*#_\[\n`;]+/', 'text');
+    }
+
+    /**
+     * @return Token
      */
     public function parse()
     {
         $matches=null;
-
-        if (mb_strlen($this->input)<=0) {
-            return new Token('eos', '');
-        }
-        elseif (preg_match('/^\n/', $this->input, $matches) || preg_match('/^\r/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('newline', $matches);
-        }
-        elseif (preg_match('/^[_]{2}([^_;]+)[_]{2}/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('em', $matches);
-        }
-        elseif (preg_match('/(^[#]+)([^\n;]+)/', $this->input, $matches)) {
-//            echo "\n=== Header Regex Matches ====\n";
-//            print_r($matches);
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('heading', $matches);
-        }
-        elseif (preg_match('/^\*{2}([^\*;]+)[\*]{2}/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('strong', $matches);
-        }
-        elseif (preg_match('/^[`]{3}([^`;]+)[`]{3}/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('code', $matches);
-        }
-        elseif(preg_match('/^\n[-]{3}\n/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('hr', $matches);
-        }
-        elseif(preg_match('/^\[([^\];]+)]\(([^\);]+)\)/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('a', $matches);
-        }
-        else if(preg_match('/^!\[([^\];]+)]\(([^;]+)\)/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('img', $matches);
-        }
-        elseif (preg_match('/^[^\*#_\[\n`;]+/', $this->input, $matches)) {
-            $this->consumeInput(mb_strlen($matches[0]));
-            return new Token('text', $matches);
-        }
-        else {
-            /**
-             * @todo
-             *      default action if no regex expressions met
-             */
-            echo "\n==== Unknown Regex Character ====\n";
-            echo ord($this->input);
-            throw new \Exception(sprintf('Failed to find token on %s', $this->input));
-        }
+        return $this->getNextToken();
     }
 }
