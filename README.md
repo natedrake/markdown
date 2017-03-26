@@ -1,5 +1,13 @@
 # PHP Markdown
 [![Build Status](https://travis-ci.org/natedrake/Markdown.svg?branch=master)](https://travis-ci.org/natedrake/markdown)
+[![Latest Stable Version](https://poser.pugx.org/natedrake/markdown/v/stable)](https://packagist.org/packages/natedrake/markdown)
+[![Total Downloads](https://poser.pugx.org/natedrake/markdown/downloads)](https://packagist.org/packages/natedrake/markdown)
+[![Latest Unstable Version](https://poser.pugx.org/natedrake/markdown/v/unstable)](https://packagist.org/packages/natedrake/markdown)
+[![License](https://poser.pugx.org/natedrake/markdown/license)](https://packagist.org/packages/natedrake/markdown)
+[![composer.lock](https://poser.pugx.org/natedrake/markdown/composerlock)](https://packagist.org/packages/natedrake/markdown)
+
+[![Monthly Downloads](https://poser.pugx.org/natedrake/markdown/d/monthly)](https://packagist.org/packages/natedrake/markdown)
+[![Daily Downloads](https://poser.pugx.org/natedrake/markdown/d/daily)](https://packagist.org/packages/natedrake/markdown)
 ### PHP Markdown Converter 
 
 Markdown is a PHP library for converting markdown to markup.  It is a useful tool 
