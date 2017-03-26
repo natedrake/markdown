@@ -41,12 +41,12 @@ class Lexer
     {
         $scanners=array(
             'scanEOS',
+            'scanHR',
             'scanNewline',
             'scanEm',
             'scanHeading',
             'scanStrong',
             'scanCode',
-            'scanHR',
             'scanLink',
             'scanImg',
             'scanText'
