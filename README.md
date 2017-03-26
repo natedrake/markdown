@@ -21,6 +21,9 @@ style their documents using markdown.
 - bold
 - links
 - images
+- ordered lists
+- unordered lists
+- block quotes
 
 ### Headings
 
@@ -71,3 +74,56 @@ Create images by inserting the alternate text in square brackets followed by the
 ![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png)
 
 ``![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png)`` will produce the following markup ``<img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Git Logo" />`` 
+
+### Lists
+
+
+#### Unordered Lists
+
+````markdown
+List
+ - item one
+ - item two
+ - item three
+````
+
+will product the following markup
+
+````html
+<ul>
+    <li>item one</li>
+    <li>item two</li>
+    <li>item three</li>
+</ul>
+````
+
+#### Ordered Lists
+
+````markdown
+List
+ 1. item one
+ 2. item two
+ 3. item three
+````
+
+will product the following markup
+
+````html
+<ol>
+    <li>item one</li>
+    <li>item two</li>
+    <li>item three</li>
+</ol>
+````
+
+### Block Quotes
+
+````markdown
+> this is a block quote
+````
+
+will product the following markup
+
+````html
+<blockquote> this is a block quote</blockquote>
+````
