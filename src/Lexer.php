@@ -47,6 +47,7 @@ class Lexer
             'scanHeading',
             'scanStrong',
             'scanCode',
+            'scanMultiLineCode',
             'scanLink',
             'scanImg',
             'scanText'
@@ -134,6 +135,11 @@ class Lexer
     protected function scanCode()
     {
         return $this->scanInput('/^[`]{3}([^`;]+)[`]{3}/', 'code');
+    }
+
+    protected function scanMultiLineCode()
+    {
+        return $this->scanInput('/^[`]{4}[\n]([^`;]+)[\n][`]{4}/', 'pre');
     }
 
     /**
