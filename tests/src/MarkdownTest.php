@@ -129,4 +129,30 @@ code
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
+
+    public function testUnorderedList()
+    {
+        $markdown="Contains:
+ - MVC Framework
+ - ORM Framework
+ - Hash Class
+ - Input Class
+";
+        $markup='<ul style="list-style: disc;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 20px;">MVC Framework</li><li style="margin-left: 20px;">ORM Framework</li><li style="margin-left: 20px;">Hash Class</li><li style="margin-left: 20px;">Input Class</li></ul>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
+
+    public function testOrderedList()
+    {
+        $markdown="Contains:
+ 1. MVC Framework
+ 2. ORM Framework
+ 4. Hash Class
+ 3. Input Class
+";
+        $markup='<ol><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 20px;"> MVC Framework</li><li style="margin-left: 20px;"> ORM Framework</li><li style="margin-left: 20px;"> Hash Class</li><li style="margin-left: 20px;"> Input Class</li></ol>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
 }
