@@ -95,4 +95,17 @@ class MarkdownTest extends PHPUnit_Framework_TestCase
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
+
+    /**
+     *
+     */
+    public function testHR()
+    {
+        $markdown='
+---
+';
+        $markup='<hr />';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
 }
