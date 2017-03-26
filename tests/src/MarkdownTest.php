@@ -144,7 +144,7 @@ code
  - Hash Class
  - Input Class
 ";
-        $markup='<ul style="list-style: disc;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 20px;">MVC Framework</li><li style="margin-left: 20px;">ORM Framework</li><li style="margin-left: 20px;">Hash Class</li><li style="margin-left: 20px;">Input Class</li></ul>';
+        $markup='<ul style="list-style: disc;padding-left:0px;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 30px;">MVC Framework</li><li style="margin-left: 30px;">ORM Framework</li><li style="margin-left: 30px;">Hash Class</li><li style="margin-left: 30px;">Input Class</li></ul>';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
@@ -160,7 +160,7 @@ code
  4. Hash Class
  3. Input Class
 ";
-        $markup='<ol><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 20px;"> MVC Framework</li><li style="margin-left: 20px;"> ORM Framework</li><li style="margin-left: 20px;"> Hash Class</li><li style="margin-left: 20px;"> Input Class</li></ol>';
+        $markup='<ol style="padding-left: 0px;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 30px;"> MVC Framework</li><li style="margin-left: 30px;"> ORM Framework</li><li style="margin-left: 30px;"> Hash Class</li><li style="margin-left: 30px;"> Input Class</li></ol>';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
