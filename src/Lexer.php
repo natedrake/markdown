@@ -50,6 +50,8 @@ class Lexer
             'scanMultiLineCode',
             'scanLink',
             'scanImg',
+            'scanUnorderedList',
+            'scanOrderedList',
             'scanText'
         );
 
@@ -137,6 +139,9 @@ class Lexer
         return $this->scanInput('/^[`]{3}([^`;]+)[`]{3}/', 'code');
     }
 
+    /**
+     * @return Token
+     */
     protected function scanMultiLineCode()
     {
         return $this->scanInput('/^[`]{4}[\n]([^`]+)[\n][`]{4}/', 'pre');
@@ -158,9 +163,28 @@ class Lexer
         return $this->scaninput('/^\[([^\];]+)]\(([^\);]+)\)/', 'a');
     }
 
+    /**
+     * @return Token
+     */
     protected function scanImg()
     {
         return $this->scanInput('/^!\[([^\];]+)]\(([^;]+)\)/', 'img');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanUnorderedList()
+    {
+        return $this->scanInput('/(^[^\*#_\[\n`;]+)([\n]([\s][-][\s][^;]+))[\n]/', 'ul');
+    }
+
+    /**
+     * @return Token
+     */
+    protected function scanOrderedList()
+    {
+        return $this->scanInput('/(^[^\*#_\[\n`;]+)[\n]([\s][\d\.\w]+[\s][^;]+)[\n]/', 'ol');
     }
 
     /**

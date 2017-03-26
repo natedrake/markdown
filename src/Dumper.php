@@ -86,6 +86,40 @@ class Dumper
                 case 'eos':
                     $return = 'eos';
                     break;
+                case 'ul':
+                    /**
+                     * @note explode items from matches array
+                     */
+                    $items=explode("\n", ltrim(rtrim($element->value[3])));
+
+                    $return.='<ul style="list-style: disc;">';
+                    $return.='<span style="font-size:1.1em;">'.$element->value[1].'</span>';
+                    /**
+                     * @note iterate through each item, removing prefix ` - `
+                     */
+                    foreach($items as $item) {
+                        $i=preg_replace('/^\-[\s]/', '',ltrim($item));
+                        $return.='<li style="margin-left: 20px;">'.$i.'</li>';
+                    }
+                    $return.='</ul>';
+                    break;
+                case 'ol':
+                    /**
+                     * @note explode items from matches array
+                     */
+                    $items=explode("\n", ltrim(rtrim($element->value[2])));
+
+                    $return.='<ol>';
+                    $return.='<span style="font-size:1.1em;">'.$element->value[1].'</span>';
+                    /**
+                     * @note iterate through each item removing prefix ` . `
+                     */
+                    foreach ($items as $item) {
+                        $i=preg_replace('/^[\d][\.]/', '',ltrim($item));
+                        $return.='<li style="margin-left: 20px;">'.$i.'</li>';
+                    }
+                    $return.='</ol>';
+                    break;
                 case 'text':
                     $return = '<p>'.$element->value[0].'</p>';
                     break;
