@@ -1,7 +1,5 @@
 # PHP Markdown
-
-[![Build Status]](https://api.travis-ci.org/natedrake/Markdown.svg?branch=master)](https://travis-ci.org/natedrake/markdown)
-
+[![Build Status](https://travis-ci.org/natedrake/Markdown.svg?branch=master)](https://travis-ci.org/natedrake/markdown)
 ### PHP Markdown Converter 
 
 Markdown is a PHP library for converting markdown to markup.  It is a useful tool 
