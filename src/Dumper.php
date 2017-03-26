@@ -59,39 +59,35 @@ class Dumper
                     $return.='';
                     break;
                 case 'heading':
-                    $headingSize = strlen($this->elements[$key]->value[1]);
+                    $headingSize = strlen($element->value[1]);
                     $return = '<h'.$headingSize.'>'.$element->value[2].'</h'.$headingSize.'>';
                     break;
                 case 'strong':
-                    $return = '<strong>'.$this->elements[$key]->value[1].'</strong>';
+                    $return = '<strong>'.$element->value[1].'</strong>';
                     break;
                 case 'em':
-                    $return = '<i>'.$this->elements[$key]->value[1].'</i>';
+                    $return = '<i>'.$element->value[1].'</i>';
                     break;
                 case 'code':
-                    $code = '<code>'.$this->elements[$key]->value[1].'</code>';
-                    if (($this->elements[$key-1] !== null) && isset($this->elements[$key+1])) {
-                        if ($this->elements[$key-1]->type==='newline' && $this->elements[$key+1]->type==='newline') {
-                            $return = '<pre>'.$code.'</pre>';
-                        }
-                    } else {
-                        $return = $code;
-                    }
+                    $return='<code>'.$element->value[1].'</code>';
+                    break;
+                case 'pre':
+                    $return='<pre>'.$element->value[1].'</pre>';
                     break;
                 case 'hr':
                     $return = '<hr />';
                     break;
                 case 'a':
-                    $return = '<a target="_blank" href="'.$this->elements[$key]->value[2].'">'.$this->elements[$key]->value[1].'</a>';
+                    $return = '<a target="_blank" href="'.$element->value[2].'">'.$element->value[1].'</a>';
                     break;
                 case 'img':
-                    $return = '<img alt="'.$this->elements[$key]->value[1].'" src="'.$this->elements[$key]->value[2].'" style="width:100%;" />';
+                    $return = '<img alt="'.$element->value[1].'" src="'.$element->value[2].'" style="width:100%;" />';
                     break;
                 case 'eos':
                     $return = 'eos';
                     break;
                 case 'text':
-                    $return = '<p>'.$this->elements[$key]->value[0].'</p>';
+                    $return = '<p>'.$element->value[0].'</p>';
                     break;
                 default:
                     break;
