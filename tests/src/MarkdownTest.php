@@ -120,6 +120,9 @@ class MarkdownTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
+    /**
+     * @return void
+     */
     public function testMultiLineCode()
     {
         $markdown='````
@@ -130,6 +133,9 @@ code
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
+    /**
+     * @return void
+     */
     public function testUnorderedList()
     {
         $markdown="Contains:
@@ -143,6 +149,9 @@ code
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 
+    /**
+     * @return void
+     */
     public function testOrderedList()
     {
         $markdown="Contains:
@@ -152,6 +161,18 @@ code
  3. Input Class
 ";
         $markup='<ol><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 20px;"> MVC Framework</li><li style="margin-left: 20px;"> ORM Framework</li><li style="margin-left: 20px;"> Hash Class</li><li style="margin-left: 20px;"> Input Class</li></ol>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
+
+    /**
+     * @return void
+     */
+    public function testQuoteBlock()
+    {
+        $markdown="> This is a quote block";
+        $markup='<blockquote> This is a quote block</blockquote>';
+
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }

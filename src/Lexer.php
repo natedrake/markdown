@@ -46,6 +46,7 @@ class Lexer
             'scanEm',
             'scanHeading',
             'scanStrong',
+            'scanQuoteBlock',
             'scanCode',
             'scanMultiLineCode',
             'scanLink',
@@ -129,6 +130,14 @@ class Lexer
     protected function scanStrong()
     {
         return $this->scanInput('/^\*{2}([^\*;]+)[\*]{2}/', 'strong');
+    }
+
+    /**
+     * @return Token
+     */
+    public function scanQuoteBlock()
+    {
+        return $this->scanInput('/^[\>]([^$\n]+)+/', 'quote');
     }
 
     /**
