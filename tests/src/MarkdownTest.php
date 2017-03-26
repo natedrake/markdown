@@ -97,7 +97,7 @@ class MarkdownTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @return void
      */
     public function testHR()
     {
@@ -105,6 +105,27 @@ class MarkdownTest extends PHPUnit_Framework_TestCase
 ---
 ';
         $markup='<hr />';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
+
+    /**
+     * @return void
+     */
+    public function testCode()
+    {
+        $markdown='```code```';
+        $markup='<code>code</code>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
+
+    public function testMultiLineCode()
+    {
+        $markdown='````
+code
+````';
+        $markup='<pre>code</pre>';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
