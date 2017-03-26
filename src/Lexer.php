@@ -139,7 +139,7 @@ class Lexer
 
     protected function scanMultiLineCode()
     {
-        return $this->scanInput('/^[`]{4}[\n]([^`;]+)[\n][`]{4}/', 'pre');
+        return $this->scanInput('/^[`]{4}[\n]([^`]+)[\n][`]{4}/', 'pre');
     }
 
     /**
