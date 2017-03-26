@@ -65,6 +65,9 @@ class Dumper
                 case 'strong':
                     $return = '<strong>'.$element->value[1].'</strong>';
                     break;
+                case 'quote':
+                    $return='<blockquote>'.$element->value[1].'</blockquote>';
+                    break;
                 case 'em':
                     $return = '<i>'.$element->value[1].'</i>';
                     break;
