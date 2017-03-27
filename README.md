@@ -78,8 +78,23 @@ Create images by inserting the alternate text in square brackets followed by the
 
 ``![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png)`` will produce the following markup ``<img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Git Logo" />`` 
 
-### Lists
+### Code
 
+Create inline code elements by surrounding elements in `` ```var x;``` ``;
+
+``
+```var x;```
+``
+
+produces the following markup
+
+````html
+<code>var x;</code>
+````
+
+if you need to span multiple lines use 4 back-ticks instead of three, and make sure to have one line break inside the back-ticks
+
+### Lists
 
 #### Unordered Lists
 
