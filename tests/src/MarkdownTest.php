@@ -186,4 +186,12 @@ code
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
+
+    public function testStrikeThrough()
+    {
+        $markdown='~~strike~~';
+        $markup='<del>strike</del>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
 }
