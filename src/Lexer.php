@@ -53,6 +53,7 @@ class Lexer
             'scanImg',
             'scanUnorderedList',
             'scanOrderedList',
+            'scanTable',
             'scanText'
         );
 
@@ -194,6 +195,11 @@ class Lexer
     protected function scanOrderedList()
     {
         return $this->scanInput('/(^[^\*#_\[\n`;]+)[\n]([\s][\d\.\w]+[\s][^;]+)[\n]/', 'ol');
+    }
+
+    public function scanTable()
+    {
+        return $this->scanInput('/(^[|][^\n;]+[|])([\n][|][^;]+[$|])/', 'table');
     }
 
     /**

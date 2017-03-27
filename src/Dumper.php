@@ -123,6 +123,39 @@ class Dumper
                     }
                     $return.='</ol>';
                     break;
+                case 'table':
+                    /**
+                     * @note parse table headings
+                     */
+                    $headings=ltrim($element->value[1], '\|');
+                    $headings=rtrim($headings, '\|');
+                    $headings=explode("|", ltrim(rtrim(($headings))));
+                    $rows=explode("\n", ltrim(rtrim($element->value[2])));
+                    $return.='<table border="border"><thead>';
+                    /**
+                     * @note iterate through table headings
+                     */
+                    foreach ($headings as $heading) {
+                        $return.="<th>{$heading}</th>";
+                    }
+                    $return.='</thead><tbody>';
+                    /**
+                     * @note iterate through table rows, and split into table data
+                     */
+                    foreach ($rows as $row) {
+                        $cols=ltrim(rtrim($row, '\|'), '\|');
+                        $cols=explode('|', $cols);
+                        $return.='<tr>';
+                        /**
+                         * @note iterate through each row data and parse table data
+                         */
+                        foreach ($cols as $col) {
+                            $return.="<td>{$col}</td>";
+                        }
+                        $return.='</tr>';
+                    }
+                    $return.='</tbody></table>';
+                    break;
                 case 'text':
                     $return = '<p>'.$element->value[0].'</p>';
                     break;
