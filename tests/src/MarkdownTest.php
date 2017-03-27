@@ -172,7 +172,17 @@ code
     {
         $markdown="> This is a quote block";
         $markup='<blockquote> This is a quote block</blockquote>';
+        $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
 
+    public function testTable()
+    {
+        $markdown="|heading one|heading two|heading three|
+|row1 col1|row1 col2|row1 col3|
+|row2 col1|row2 col2|row2 col3|
+";
+        $markup='<table border="border"><thead><th>heading one</th><th>heading two</th><th>heading three</th></thead><tbody><tr><td>row1 col1</td><td>row1 col2</td><td>row1 col3</td></tr><tr><td>row2 col1</td><td>row2 col2</td><td>row2 col3</td></tr></tbody></table><br />';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
