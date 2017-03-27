@@ -55,6 +55,14 @@ Wrap text in ``**`` to make it bold
 
 ``**this text is bold**`` will produce the following markup ``<strong>this text is bold</strong>``
 
+### Strike Through
+
+``~~text~~``
+
+Wrap text in ``~~`` to strike through the text.
+
+``~~text~~`` produces the following markup ``<del>text</del>``
+
 ### Links
 
 ``[Text](Hyperlink)``
