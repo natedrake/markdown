@@ -54,6 +54,7 @@ class Lexer
             'scanUnorderedList',
             'scanOrderedList',
             'scanTable',
+            'scanStrikeThrough',
             'scanText'
         );
 
@@ -197,9 +198,17 @@ class Lexer
         return $this->scanInput('/(^[^\*#_\[\n`;]+)[\n]([\s][\d\.\w]+[\s][^;]+)[\n]/', 'ol');
     }
 
+    /**
+     * @return Token
+     */
     public function scanTable()
     {
         return $this->scanInput('/(^[|][^\n;]+[|])([\n][|][^;]+[$|])/', 'table');
+    }
+
+    public function scanStrikeThrough()
+    {
+        return $this->scanInput('/^[\~]{2}([^\~]+)[~]{2}/', 'strike');
     }
 
     /**

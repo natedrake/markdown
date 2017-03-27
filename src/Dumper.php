@@ -156,6 +156,9 @@ class Dumper
                     }
                     $return.='</tbody></table>';
                     break;
+                case 'strike':
+                    $return.='<del>'.$element->value[1].'</del>';
+                    break;
                 case 'text':
                     $return = '<p>'.$element->value[0].'</p>';
                     break;
