@@ -1,5 +1,5 @@
 # PHP Markdown
-[![Build Status](https://travis-ci.org/natedrake/Markdown.svg?branch=master)](https://travis-ci.org/natedrake/markdown)
+[![Build Status](https://travis-ci.org/natedrake/markdown.svg?branch=master)](https://travis-ci.org/natedrake/markdown)
 [![Latest Stable Version](https://poser.pugx.org/natedrake/markdown/v/stable)](https://packagist.org/packages/natedrake/markdown)
 [![Total Downloads](https://poser.pugx.org/natedrake/markdown/downloads)](https://packagist.org/packages/natedrake/markdown)
 [![Latest Unstable Version](https://poser.pugx.org/natedrake/markdown/v/unstable)](https://packagist.org/packages/natedrake/markdown)
