@@ -16,7 +16,6 @@ class Lexer
      * @var string $input
      */
     public $input;
-
     /**
      * Lexer constructor.
      * @param $input
@@ -77,9 +76,6 @@ class Lexer
         $matches=array();
         if (preg_match($regex, $this->input, $matches)) {
             $this->consumeInput(mb_strlen($matches[0]));
-            if ($type==='heading') {
-
-            }
             return new Token($type, $matches);
         }
     }
@@ -115,7 +111,7 @@ class Lexer
      */
     protected function scanEm()
     {
-        return $this->scanInput('/^[_]{2}([^_;]+)[_]{2}/', 'em');
+        return $this->scanInput('/^[_]{2}([^_]+)[_]{2}/', 'em');
     }
 
     /**
@@ -123,7 +119,7 @@ class Lexer
      */
     protected function scanHeading()
     {
-        return $this->scanInput('/(^[#]+)([^\n;]+)/', 'heading');
+        return $this->scanInput('/(^[#]+)([^\n]+)/', 'heading');
     }
 
     /**
@@ -131,7 +127,7 @@ class Lexer
      */
     protected function scanStrong()
     {
-        return $this->scanInput('/^\*{2}([^\*;]+)[\*]{2}/', 'strong');
+        return $this->scanInput('/^\*{2}([^\*]+)[\*]{2}/', 'strong');
     }
 
     /**
@@ -147,7 +143,7 @@ class Lexer
      */
     protected function scanCode()
     {
-        return $this->scanInput('/^[`]{3}([^`;]+)[`]{3}/', 'code');
+        return $this->scanInput('/^[`]{3}([^`]+)[`]{3}/', 'code');
     }
 
     /**
@@ -171,7 +167,7 @@ class Lexer
      */
     protected function scanLink()
     {
-        return $this->scaninput('/^\[([^\];]+)]\(([^\);]+)\)/', 'a');
+        return $this->scaninput('/^\[([^\]]+)]\(([^\);]+)\)/', 'a');
     }
 
     /**
@@ -187,7 +183,7 @@ class Lexer
      */
     protected function scanUnorderedList()
     {
-        return $this->scanInput('/(^[^\*#_\[\n`;]+)([\n]([\s][-][\s][^;]+))[\n]/', 'ul');
+        return $this->scanInput('/^([^\n]+)(([\n]?\s\-\s[^\n]+)+)/', 'ul');
     }
 
     /**
@@ -195,7 +191,7 @@ class Lexer
      */
     protected function scanOrderedList()
     {
-        return $this->scanInput('/(^[^\*#_\[\n`;]+)[\n]([\s][\d\.\w]+[\s][^;]+)[\n]/', 'ol');
+        return $this->scanInput('/^([^\n]+)(([\n]?\s\d\.\s[^\n]+)+)/', 'ol');
     }
 
     /**
@@ -216,7 +212,7 @@ class Lexer
      */
     protected function scanText()
     {
-        return $this->scanInput('/^[^\*#_\[\n`;]+/', 'text');
+        return $this->scanInput('/^[^\*#_\[\n`]+/', 'text');
     }
 
     /**
