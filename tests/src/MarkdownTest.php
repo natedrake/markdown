@@ -142,8 +142,7 @@ code
  - MVC Framework
  - ORM Framework
  - Hash Class
- - Input Class
-";
+ - Input Class";
         $markup='<ul style="list-style: disc;padding-left:0px;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 30px;">MVC Framework</li><li style="margin-left: 30px;">ORM Framework</li><li style="margin-left: 30px;">Hash Class</li><li style="margin-left: 30px;">Input Class</li></ul>';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
@@ -158,8 +157,7 @@ code
  1. MVC Framework
  2. ORM Framework
  4. Hash Class
- 3. Input Class
-";
+ 3. Input Class";
         $markup='<ol style="padding-left: 0px;"><span style="font-size:1.1em;">Contains:</span><li style="margin-left: 30px;"> MVC Framework</li><li style="margin-left: 30px;"> ORM Framework</li><li style="margin-left: 30px;"> Hash Class</li><li style="margin-left: 30px;"> Input Class</li></ol>';
         $bootstrap=new BootStrap($markdown);
         $this->assertEquals($markup, $bootstrap->dumper->parse());
@@ -192,6 +190,54 @@ code
         $markdown='~~strike~~';
         $markup='<del>strike</del>';
         $bootstrap=new BootStrap($markdown);
+        $this->assertEquals($markup, $bootstrap->dumper->parse());
+    }
+
+    public function testAllTokens()
+    {
+        $markdown="# Heading One
+
+## Heading Two
+
+### Heading Three
+
+#### Heading Four
+
+##### Heading Five
+
+###### Heading Six
+
+__italics__
+
+**bold**
+
+~~strike~~
+
+[google.ie](https://google.ie/)
+
+![Alternative Text](https://s3-eu-west-1.amazonaws.com/ogradyjohn.com/cover.png)
+
+Unordered List
+ - item one
+ - item two
+ - item three
+
+Ordered List
+ 1. item one
+ 2. item two
+ 3. item three
+
+> block quote
+
+|Heading One|Heading Two|Heading Three|
+|Row1Col1|Row1Col2|Row1Col2|
+|Row2Col1|Row2Col2|Row2Col2|
+|Row3Col1|Row3Col2|Row3Col2|";
+
+        $markup="<h1> Heading One</h1><h2> Heading Two</h2><h3> Heading Three</h3><h4> Heading Four</h4><h5> Heading Five</h5><h6> Heading Six</h6><i>italics</i><br /><strong>bold</strong><br /><del>strike</del><br /><a target=\"_blank\" href=\"https://google.ie/\">google.ie</a><br /><img alt=\"Alternative Text\" src=\"https://s3-eu-west-1.amazonaws.com/ogradyjohn.com/cover.png\" style=\"width:100%;\" /><br /><ul style=\"list-style: disc;padding-left:0px;\"><span style=\"font-size:1.1em;\">Unordered List</span><li style=\"margin-left: 30px;\">item one</li><li style=\"margin-left: 30px;\">item two</li><li style=\"margin-left: 30px;\">item three</li></ul><br /><ol style=\"padding-left: 0px;\"><span style=\"font-size:1.1em;\">Ordered List</span><li style=\"margin-left: 30px;\"> item one</li><li style=\"margin-left: 30px;\"> item two</li><li style=\"margin-left: 30px;\"> item three</li></ol><br /><blockquote> block quote</blockquote><br /><table border=\"border\"><thead><th>Heading One</th><th>Heading Two</th><th>Heading Three</th></thead><tbody><tr><td>Row1Col1</td><td>Row1Col2</td><td>Row1Col2</td></tr><tr><td>Row2Col1</td><td>Row2Col2</td><td>Row2Col2</td></tr><tr><td>Row3Col1</td><td>Row3Col2</td><td>Row3Col2</td></tr></tbody></table>";
+
+        $bootstrap=new BootStrap($markdown);
+
         $this->assertEquals($markup, $bootstrap->dumper->parse());
     }
 }
