@@ -145,3 +145,37 @@ will product the following markup
 ````html
 <blockquote> this is a block quote</blockquote>
 ````
+
+### Tables
+
+Tables can now be created by using the bar character.  Use the ``|`` character to outline your table and it's columns
+ 
+````markdown
+|Heading One|Heading Two|Heading Three|
+|Row1Col1|Row1Col2|Row1Col2|
+|Row2Col1|Row2Col2|Row2Col2|
+|Row3Col1|Row3Col2|Row3Col2|
+````
+
+produces a HTML table like:
+
+````html
+<table border="border">
+    <thead>
+        <th>heading one</th>
+        <th>heading two</th>
+        <th>heading three</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>row1Col1</td><td>row1Col2</td><td>row1Col3</td>
+        </tr>
+        <tr>
+            <td>row2Col1</td><td>row2Col2</td><td>row2Col3</td>
+        </tr>
+        <tr>
+            <td>row3Col1</td><td>row3 col2</td><td>row3Col3</td>
+         </tr>
+    </tbody>
+</table>
+````
