@@ -8,22 +8,25 @@
 
 [![Monthly Downloads](https://poser.pugx.org/natedrake/markdown/d/monthly)](https://packagist.org/packages/natedrake/markdown)
 [![Daily Downloads](https://poser.pugx.org/natedrake/markdown/d/daily)](https://packagist.org/packages/natedrake/markdown)
-### PHP Markdown Converter 
 
+## PHP Markdown Converter 
+
+ 1. [Headings](https://github.com/natedrake/markdown/blob/master/README.md#headings)
+ 2. [Italics](https://github.com/natedrake/markdown/blob/master/README.md#italics) 
+ 3. [Bold](https://github.com/natedrake/markdown/blob/master/README.md#bold)
+ 4. [Strike Through](https://github.com/natedrake/markdown/blob/master/README.md#strike-through)
+ 5. [Links](https://github.com/natedrake/markdown/blob/master/README.md#links)
+ 6. [Images](https://github.com/natedrake/markdown/blob/master/README.md#images)
+ 7. [Lists](https://github.com/natedrake/markdown/blob/master/README.md#lists)
+    - [Unordered List](https://github.com/natedrake/markdown/blob/master/README.md#unordered-lists)
+    - [Ordered List](https://github.com/natedrake/markdown/blob/master/README.md#ordered-lists)
+ 8. [Block Quotes](https://github.com/natedrake/markdown/blob/master/README.md#block-quotes)
+ 9. [Tables](https://github.com/natedrake/markdown/blob/master/README.md#tables)
+ 
 Markdown is a PHP library for converting markdown to markup.  It is a useful tool 
 for creating documentation on a web page.  For example, if your website contains
 a blog, wiki pages, any sort of editing from users you could allow them to
 style their documents using markdown.
-
-## Supports:
-- headings
-- italics
-- bold
-- links
-- images
-- ordered lists
-- unordered lists
-- block quotes
 
 ### Headings
 
@@ -55,14 +58,6 @@ Wrap text in ``**`` to make it bold
 
 ``**this text is bold**`` will produce the following markup ``<strong>this text is bold</strong>``
 
-### Strike Through
-
-``~~text~~``
-
-Wrap text in ``~~`` to strike through the text.
-
-``~~text~~`` produces the following markup ``<del>text</del>``
-
 ### Links
 
 ``[Text](Hyperlink)``
@@ -83,8 +78,23 @@ Create images by inserting the alternate text in square brackets followed by the
 
 ``![Git Logo](https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png)`` will produce the following markup ``<img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" alt="Git Logo" />`` 
 
-### Lists
+### Code
 
+Create inline code elements by surrounding elements in `` ```var x;``` ``;
+
+``
+```var x;```
+``
+
+produces the following markup
+
+````html
+<code>var x;</code>
+````
+
+if you need to span multiple lines use 4 back-ticks instead of three, and make sure to have one line break inside the back-ticks
+
+### Lists
 
 #### Unordered Lists
 
@@ -141,7 +151,7 @@ will product the following markup
 Tables can now be created by using the bar character.  Use the ``|`` character to outline your table and it's columns
  
 ````markdown
-|Heading One|Heading Two|Heading Three
+|Heading One|Heading Two|Heading Three|
 |Row1Col1|Row1Col2|Row1Col2|
 |Row2Col1|Row2Col2|Row2Col2|
 |Row3Col1|Row3Col2|Row3Col2|

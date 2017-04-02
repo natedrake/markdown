@@ -93,7 +93,7 @@ class Dumper
                     /**
                      * @note explode items from matches array
                      */
-                    $items=explode("\n", ltrim(rtrim($element->value[3])));
+                    $items=explode("\n", ltrim(rtrim($element->value[2])));
 
                     $return.='<ul style="list-style: disc;padding-left:0px;">';
                     $return.='<span style="font-size:1.1em;">'.$element->value[1].'</span>';
