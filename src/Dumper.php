@@ -160,7 +160,20 @@ class Dumper
                     $return.='<del>'.$element->value[1].'</del>';
                     break;
                 case 'text':
-                    $return = '<p>'.$element->value[0].'</p>';
+                    if (($this->previousElement) && (isset($this->elements[$key+1]))) {
+                        /**
+                         * @note logic for inline code blocks
+                         */
+                        if ($this->elements[$key+1]->type() === 'code' && ($this->previousElement->type() !== 'code')) {
+                            $return = '<p>'.$element->value[0];
+                        } else if ($this->previousElement->type() === 'code' && $this->elements[$key+1]->type() === 'newline') {
+                            $return=$element->value[0].'</p>';
+                        } else if (($this->previousElement->type() === 'code' && $this->elements[$key+1]->type() === 'text') || ($this->previousElement->type() === 'code' && $this->elements[$key+1]->type() === 'code')) {
+                            $return = $element->value[0];
+                        } else {
+                            $return='<p>'.$element->value[0].'</p>';
+                        }
+                    }
                     break;
                 default:
                     break;
